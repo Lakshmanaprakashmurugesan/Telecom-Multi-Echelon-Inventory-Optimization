@@ -42,7 +42,7 @@
 <p align="justify">The network of all the people, companies, assets, processes, and technological advancements involved in developing and providing a good or service from suppliers to consumers is known as a supply chain. It includes every step of the process, from locating raw materials to shipping the finished good to the customer. While minimizing costs, efficient supply chain management guarantees that the appropriate product is delivered at the right time, in the right amount, and in the desired quality. Businesses must manage this intricate worldwide network of distributors, manufacturers, suppliers, and shipping companies in order to satisfy consumer needs and stay competitive.</p>
 
 <div align="center">
-  <img src="/client/public/Supply-Chain-Example.jpeg" />
+  <img src="/client/public/Supply-Chain-Example.png " />
 </div>
 <br>
 <p align="justify">This image illustrate the key components and flow of a typical supply chain. It depicts the interconnected network of entities involved in the process of transforming raw materials into finished products and delivering them to the end consumer.</p>
@@ -78,7 +78,7 @@
 ## Architecture Diagram
 
 <div align="center">
-  <img src="client/public/Architecture Diagram.png">
+  <img src="/client/public/Architecture Diagram.png ">
 </div>
 <br>
 
@@ -105,7 +105,7 @@
 ## Working of the Smart Contract
 
 <div align="center">
-  <img src="/client/public/contractD.png" />
+  <img src="/client/public/contractD.png " />
 </div>
 <br />
 
@@ -120,7 +120,7 @@
 ## Class Diagram
 
 <div align="center">
-  <img src="/client/public/Project.jpg" />
+  <img src="/client/public/Project.png" />
 </div>
 <br />
 
@@ -181,7 +181,7 @@
 ## Use Case Diagram
 
 <div align="center">
-  <img src="/client/public/Use case diagram.jpeg" />
+  <img src="/client/public/Use case diagram.png" />
 </div>
 <br />
 
@@ -231,7 +231,7 @@ Key components of the diagram:
 ## Sequence Diagram
 
 <div align="center">
-  <img src="/client/public/Sequence diagram.jpeg" />
+  <img src="/client/public/Sequence diagram.png" />
 </div>
 
 <p align="justify">
@@ -261,7 +261,7 @@ Key components of the diagram:
 ## Workflow of Smart Contract
 
 <div align="center">
-  <img src="/client/public/Supply Chain Workflow.png" />
+  <img src="/client/public/Supply Chain Workflow.png " />
 </div>
 <br />
 
@@ -406,7 +406,7 @@ npm start
 ### Step 4. Connect Meta Mask with Ganache
 
 <div align="center">
-  <img src="/client/public/Ganache Connector.jpg" />
+  <img src="/client/public/Ganache Connector.png" />
 </div>
 
 - *Start Ganache:* Start the Ganache application and make note of the RPC server URL and port number.
@@ -486,6 +486,7 @@ npm start
 
 ## Authors
 Lakshmanaprakash Murugesan
+
 
 
 
