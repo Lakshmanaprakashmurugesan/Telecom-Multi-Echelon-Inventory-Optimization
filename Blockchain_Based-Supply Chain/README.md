@@ -78,7 +78,7 @@
 ## Architecture Diagram
 
 <div align="center">
-  <img src="/client/public/Architecture Diagram.png">
+  <img src="Blockchain_Based-Supply Chain/client/public/Architecture Diagram.png">
 </div>
 <br>
 
