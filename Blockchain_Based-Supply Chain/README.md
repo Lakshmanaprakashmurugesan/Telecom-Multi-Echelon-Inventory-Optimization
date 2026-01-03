@@ -78,7 +78,7 @@
 ## Architecture Diagram
 
 <div align="center">
-  <img src="/client/public/Architecture Diagram.jpeg">
+  <img src="/client/public/Architecture Diagram">
 </div>
 <br>
 
