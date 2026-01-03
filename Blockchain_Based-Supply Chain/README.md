@@ -484,7 +484,7 @@ npm start
 - Truffle: https://www.trufflesuite.com/docs/truffle/reference/configuration
 - Ganache-CLI: https://www.trufflesuite.com/docs/ganache/overview
 
-## Authors
+## Author
 Lakshmanaprakash Murugesan
 
 
