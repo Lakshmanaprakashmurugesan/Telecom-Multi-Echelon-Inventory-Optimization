@@ -1,0 +1,2 @@
+# Development/test dependency only. The MEIO backend itself uses Python's standard library.
+pytest>=8,<10

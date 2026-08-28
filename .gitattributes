@@ -1,0 +1,9 @@
+# Keep source/documentation text-normalized while treating the workbook as binary.
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+*.xml text eol=lf
+*.xlsx binary

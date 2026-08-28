@@ -1,0 +1,34 @@
+# Python runtime artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Test / tool caches (only relevant if later used)
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local secrets / environment configuration
+.env
+.env.*
+!.env.example
+
+# Local temporary files
+*.tmp
+*.temp
+~$*.xlsx
+
+# Do NOT broadly ignore evidence/ or outputs/.
+# If real reproducibility artifacts are intentionally committed,
+# they should remain visible to Git.
