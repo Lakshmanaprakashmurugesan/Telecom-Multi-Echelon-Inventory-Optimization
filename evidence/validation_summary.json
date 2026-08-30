@@ -1,0 +1,46 @@
+{
+  "baseline": {
+    "message": "MEIO optimization completed",
+    "optimizer_status": "OPTIMAL",
+    "total_allocation": 37.912581,
+    "total_remaining_shortage": 56.073272
+  },
+  "supply_constraint": {
+    "message": "MEIO optimization completed",
+    "optimizer_status": "OPTIMAL",
+    "total_allocation": 15.0
+  },
+  "budget_constraint": {
+    "message": "MEIO optimization completed",
+    "optimizer_status": "OPTIMAL",
+    "total_allocation": 12.5
+  },
+  "edge_flow": {
+    "message": "MEIO optimization completed",
+    "optimizer_status": "OPTIMAL",
+    "total_allocation": 63.024242
+  },
+  "guardrail": {
+    "message": "MEIO optimization completed",
+    "optimizer_status": "OPTIMAL",
+    "total_allocation": 37.912582,
+    "guardrail_statuses": [
+      "APPROVAL_REQUIRED"
+    ]
+  },
+  "risk_model": {
+    "message": "MEIO optimization completed",
+    "optimizer_status": "OPTIMAL",
+    "total_allocation": 37.912581,
+    "risk_enabled": true,
+    "simulations": 500,
+    "seed": 17
+  },
+  "offline_replay": {
+    "message": "MEIO optimization completed",
+    "optimizer_status": "OPTIMAL",
+    "total_allocation": 37.912581,
+    "replay_enabled": true,
+    "observation_count": 3
+  }
+}

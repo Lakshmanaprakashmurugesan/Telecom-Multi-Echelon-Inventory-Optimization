@@ -1,0 +1,2427 @@
+<!DOCTYPE html>
+<!-- MEIO UI BUILD: 2026-08-23-final-excel-ui -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Telecom Multi-Echelon Inventory Optimization</title>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --surface-dark: #0f172a;
+      --text: #0f172a;
+      --text-soft: #475569;
+      --text-muted: #64748b;
+      --border: #dbe4ef;
+      --border-strong: #cbd5e1;
+      --primary: #0f3d63;
+      --primary-2: #155e75;
+      --primary-soft: #eaf3f8;
+      --success: #166534;
+      --success-bg: #f0fdf4;
+      --success-border: #bbf7d0;
+      --danger: #991b1b;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+      --info: #1e4f72;
+      --info-bg: #eff6ff;
+      --info-border: #bfdbfe;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+      --shadow-sm: 0 5px 15px rgba(15, 23, 42, 0.05);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(21, 94, 117, 0.08), transparent 28rem),
+        linear-gradient(180deg, #f8fbfd 0%, var(--bg) 48%, #f6f8fb 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      display: block;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+    }
+
+    .container {
+      width: min(1420px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 34px 0 64px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0b1f33 0%, #123c5a 58%, #155e75 100%);
+      color: white;
+      border-radius: 22px;
+      padding: 34px 38px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 46px rgba(15, 61, 99, 0.18);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -130px;
+      top: -190px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      box-shadow: 0 0 0 42px rgba(255,255,255,0.035), 0 0 0 84px rgba(255,255,255,0.025);
+      pointer-events: none;
+    }
+
+    .hero-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #d7edf7;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #7dd3fc;
+      box-shadow: 0 0 0 5px rgba(125, 211, 252, 0.13);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #eff9fc;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .status-pill::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: #86efac;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(134, 239, 172, 0.13);
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 950px;
+      font-size: clamp(30px, 4vw, 49px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      font-weight: 760;
+    }
+
+    .subtitle {
+      position: relative;
+      z-index: 1;
+      color: #c8dce8;
+      margin: 15px 0 0;
+      font-size: 15px;
+      letter-spacing: 0.01em;
+    }
+
+    .workflow-strip {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .workflow-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      color: #eaf5fa;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .workflow-step:not(:last-child)::after {
+      content: "→";
+      color: #8fc7dc;
+      margin-left: 2px;
+      font-weight: 400;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .section-kicker {
+      margin: 0 0 4px;
+      color: var(--primary-2);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--text-soft);
+      margin: 0 0 13px;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(285px, 0.75fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .capability-panel {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      height: 100%;
+    }
+
+    .capability-panel h3 {
+      margin: 0 0 14px;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .capability-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .capability-list li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .capability-list li::before {
+      content: "✓";
+      display: inline-grid;
+      place-items: center;
+      width: 19px;
+      height: 19px;
+      flex: 0 0 19px;
+      border-radius: 50%;
+      background: #e6f4f1;
+      color: #0f766e;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .boundary-box {
+      margin-top: 18px;
+      padding: 15px 17px;
+      border: 1px solid #d7e5ed;
+      background: #f5fafc;
+      border-left: 4px solid var(--primary-2);
+      color: #334155;
+      border-radius: 9px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .input-layout {
+      display: grid;
+      gap: 16px;
+    }
+
+    .upload-zone {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fbfdff 0%, #f6fafc 100%);
+      box-shadow: inset 4px 0 0 var(--primary-2);
+    }
+
+    .upload-main {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .upload-copy {
+      min-width: 0;
+    }
+
+    .upload-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 42px;
+      border-radius: 11px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .upload-zone h3 {
+      margin: 0 0 3px;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .upload-zone p {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .upload-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .file-control {
+      min-width: 310px;
+      max-width: 470px;
+      padding: 7px 9px;
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      background: #ffffff;
+    }
+
+    .helper {
+      margin-top: 0;
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      margin: 0;
+      color: #475569;
+      font-size: 12.5px;
+    }
+
+    input[type="file"]::file-selector-button {
+      margin-right: 10px;
+      padding: 9px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
+      color: #1e293b;
+      font-weight: 750;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+      border-color: #94a3b8;
+      background: #f1f5f9;
+    }
+
+    .schema-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 0 2px;
+    }
+
+    .schema-label {
+      margin-right: 2px;
+      color: var(--text-muted);
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .schema-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border: 1px solid #dce6ee;
+      border-radius: 999px;
+      background: #f8fbfd;
+      color: #39556b;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .json-panel {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+
+    .json-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0;
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--border);
+      background: #f8fafc;
+      font-size: 13px;
+      font-weight: 750;
+      color: #334155;
+    }
+
+    .json-label span:last-child {
+      font-size: 11px;
+      font-weight: 650;
+      color: var(--text-muted);
+    }
+
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 310px;
+      resize: vertical;
+      padding: 17px 19px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #d8e5ec;
+      background: #0d1826;
+      border: 0;
+      border-radius: 0;
+      outline: none;
+      box-shadow: none;
+      transition: box-shadow 0.18s ease;
+    }
+
+    textarea:focus {
+      box-shadow: inset 0 0 0 2px rgba(45, 112, 141, 0.55);
+    }
+
+    textarea::placeholder {
+      color: #7590a3;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 11px 17px;
+      background: linear-gradient(135deg, var(--primary), #154f73);
+      color: white;
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: 0.005em;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(15, 61, 99, 0.14);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 9px 18px rgba(15, 61, 99, 0.18);
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    button.secondary {
+      background: white;
+      color: #334155;
+      border-color: var(--border-strong);
+      box-shadow: none;
+    }
+
+    button.secondary:hover:not(:disabled) {
+      background: #f8fafc;
+      box-shadow: none;
+    }
+
+    button:disabled {
+      opacity: 0.58;
+      cursor: wait;
+      transform: none;
+    }
+
+
+
+
+
+    #runButton {
+      min-width: 205px;
+      padding: 11px 18px;
+    }
+
+    .execution-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f8fbfd 0%, #eef7fb 100%);
+    }
+
+    .execution-card-copy {
+      min-width: 0;
+    }
+
+    .execution-eyebrow {
+      display: inline-block;
+      margin-bottom: 5px;
+      color: #0f6f8f;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    .execution-card h3 {
+      margin: 0 0 5px;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .execution-card p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .execution-card #runButton {
+      flex: 0 0 auto;
+      min-width: 220px;
+    }
+
+    @media (max-width: 760px) {
+      .execution-card {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .execution-card #runButton {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    .message-stack {
+      display: grid;
+      gap: 9px;
+      padding-top: 2px;
+    }
+
+    .error,
+    .success,
+    .info {
+      margin-top: 0;
+      padding: 11px 13px 11px 15px;
+      border-radius: 9px;
+      white-space: pre-wrap;
+      font-size: 12.5px;
+      line-height: 1.5;
+      border-left-width: 4px;
+    }
+
+    .error {
+      border: 1px solid var(--danger-border);
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    .success {
+      border: 1px solid var(--success-border);
+      background: var(--success-bg);
+      color: var(--success);
+      font-weight: 650;
+    }
+
+    .info {
+      border: 1px solid var(--info-border);
+      background: var(--info-bg);
+      color: var(--info);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .result-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #eef7f5;
+      color: #0f766e;
+      font-size: 11px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .result-meta::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #14b8a6;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 1180px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #e6edf4;
+      padding: 11px 12px;
+      text-align: left;
+      white-space: nowrap;
+      font-size: 12.5px;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #f5f8fb;
+      color: #334155;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.025em;
+      text-transform: uppercase;
+    }
+
+    td {
+      color: #334155;
+      font-variant-numeric: tabular-nums;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover td {
+      background: #f8fbfd;
+    }
+
+    pre {
+      margin: 0;
+      background: #0b1522;
+      color: #d7e4ec;
+      padding: 18px;
+      overflow-x: auto;
+      border-radius: 12px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 12.5px;
+      line-height: 1.55;
+      border: 1px solid #1b2d3e;
+    }
+
+    .footer-note {
+      margin: 27px auto 0;
+      text-align: center;
+      color: #64748b;
+      font-size: 11.5px;
+    }
+
+    @media (max-width: 900px) {
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .upload-zone {
+        grid-template-columns: 1fr;
+      }
+
+      .upload-actions {
+        justify-content: flex-start;
+      }
+
+      .file-control {
+        min-width: 0;
+        width: 100%;
+        max-width: none;
+      }
+
+      .hero {
+        padding: 28px 24px;
+      }
+
+      .hero-topline,
+      .card-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .container {
+        width: min(100% - 22px, 1420px);
+        padding-top: 22px;
+      }
+
+      .card {
+        padding: 21px;
+      }
+
+      .execution-bar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .run-row {
+        justify-content: stretch;
+      }
+
+      #runButton {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        border-radius: 16px;
+      }
+
+      .status-pill {
+        white-space: normal;
+      }
+
+      .workflow-step {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .workflow-step:not(:last-child)::after {
+        margin-left: auto;
+      }
+    }
+  </style>
+
+  <!--
+    Excel parsing library.
+    For a fully self-contained Amplify deployment, download this file and
+    place it beside index.html, then change the src to "./xlsx.full.min.js".
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="hero-topline">
+      <div class="eyebrow">Telecommunications Supply-Chain Analytics</div>
+      <div class="status-pill">AWS Amplify Hosted</div>
+    </div>
+
+    <h1>Telecom Multi-Echelon Inventory Optimization</h1>
+
+    <p class="subtitle">
+      Network-aware inventory decision support across interconnected supply-chain echelons
+    </p>
+
+    <div class="workflow-strip" aria-label="Application workflow">
+      <div class="workflow-step">AWS Amplify</div>
+      <div class="workflow-step">API Gateway</div>
+      <div class="workflow-step">AWS Lambda</div>
+      <div class="workflow-step">MEIO Engine</div>
+    </div>
+  </header>
+
+
+  <section class="card">
+    <div class="card-header">
+      <div>
+        <p class="section-kicker">Technical Overview</p>
+        <h2>About this MEIO Prototype</h2>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div>
+        <p>
+          This working prototype demonstrates a Multi-Echelon Inventory Optimization (MEIO)
+          decision-support model for telecommunications supply chains. Rather than treating
+          inventory locations independently, the model evaluates inventory across interconnected
+          network echelons.
+        </p>
+
+        <p>
+          Using caller-supplied demand, demand variability, lead time, inventory position,
+          service-level targets, capacity, available supply, holding cost, shortage penalty,
+          and budget constraints, the engine calculates echelon inventory, safety-stock targets,
+          reorder points, and constrained inventory-allocation recommendations.
+        </p>
+
+        <p>
+          The purpose of the prototype is to demonstrate how network-wide inventory coordination
+          can support telecommunications supply-chain resilience by balancing inventory
+          availability, shortage risk, service objectives, and inventory cost.
+        </p>
+
+        <div class="boundary-box">
+          <strong>Prototype Boundary:</strong>
+          This application is a controlled technical demonstration using user-supplied or
+          synthetic/non-proprietary input data. It generates decision-support recommendations
+          only and does not execute ERP, WMS, OMS, procurement, or telecommunications carrier
+          operational transactions.
+        </div>
+      </div>
+
+      <aside class="capability-panel" aria-label="Implemented MEIO capabilities">
+        <h3>Implemented Decision-Support Scope</h3>
+        <ul class="capability-list">
+          <li>Network echelon inventory</li>
+          <li>Safety-stock targets</li>
+          <li>Reorder-point policies</li>
+          <li>Constrained allocation</li>
+          <li>Capacity &amp; supply controls</li>
+          <li>Policy guardrails &amp; auditability</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+
+  <section class="card">
+    <div class="card-header">
+      <div>
+        <p class="section-kicker">Step 01</p>
+        <h2>MEIO Input</h2>
+      </div>
+    </div>
+
+    <div class="input-layout">
+      <div class="upload-zone">
+        <div class="upload-main">
+          <div class="upload-icon" aria-hidden="true">↑</div>
+          <div class="upload-copy">
+            <h3>Load scenario input</h3>
+            <p>
+              Upload the controlled MEIO Excel workbook. The browser validates the workbook
+              and prepares the request required by the Lambda MEIO engine.
+            </p>
+          </div>
+        </div>
+
+        <div class="upload-actions">
+          <div class="file-control">
+            <input
+              id="fileInput"
+              type="file"
+              accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+            >
+          </div>
+
+          <button
+            id="downloadTemplateButton"
+            class="secondary"
+            type="button"
+          >
+            Download Blank Template
+          </button>
+        </div>
+      </div>
+
+      <div class="schema-row" aria-label="Excel workbook schema">
+        <span class="schema-label">Excel schema</span>
+        <span class="schema-chip">Records</span>
+        <span class="schema-chip">Topology</span>
+        <span class="schema-chip">SKU_Config</span>
+        <span class="schema-chip">Run_Config</span>
+        <span class="helper">Use the controlled workbook structure shown above.</span>
+      </div>
+
+      <!--
+        Internal request buffer used by the existing application workflow.
+        It is intentionally hidden from the user interface; users interact with Excel only.
+      -->
+      <textarea id="jsonInput" class="hidden" aria-hidden="true" tabindex="-1"></textarea>
+
+      <div class="execution-card">
+        <div class="execution-card-copy">
+          <span class="execution-eyebrow">Ready to optimize</span>
+          <h3>Run the MEIO decision-support engine</h3>
+          <p>Upload the controlled Excel input, then execute the validated MEIO workflow.</p>
+        </div>
+        <button
+          id="runButton"
+          type="button"
+        >
+          Run MEIO Optimization
+        </button>
+      </div>
+
+      <div class="message-stack">
+        <div
+          id="infoBox"
+          class="info hidden"
+        ></div>
+
+        <div
+          id="errorBox"
+          class="error hidden"
+        ></div>
+
+        <div
+          id="successBox"
+          class="success hidden"
+        >
+          MEIO optimization completed successfully.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section
+    id="resultCard"
+    class="card hidden"
+  >
+    <div class="card-header">
+      <div>
+        <p class="section-kicker">Step 02</p>
+        <h2>MEIO Policy Output</h2>
+      </div>
+      <div class="result-meta">Structured policy results</div>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>Node</th>
+            <th>Inventory Position</th>
+            <th>Echelon Inventory</th>
+            <th>Safety Stock</th>
+            <th>Reorder Point</th>
+            <th>Recommended Allocation</th>
+            <th>Remaining Shortage</th>
+            <th>Service Level</th>
+            <th>Guardrail</th>
+          </tr>
+        </thead>
+
+        <tbody id="resultBody">
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section
+    id="rawCard"
+    class="card hidden"
+  >
+    <div class="card-header">
+      <div>
+        <p class="section-kicker">Step 03</p>
+        <h2>Complete Lambda Response</h2>
+      </div>
+      <div class="result-meta">Raw structured output</div>
+    </div>
+
+    <pre id="rawOutput"></pre>
+  </section>
+
+  <p class="footer-note">
+    AWS Amplify hosted · caller-supplied or synthetic/non-proprietary inputs · decision support only
+  </p>
+
+</div>
+
+
+<script>
+
+  /*
+    Existing API Gateway endpoint.
+    Amplify -> API Gateway -> Lambda M -> MEIO Engine.
+  */
+  const API_URL =
+    "https://7qdd3wap3a.execute-api.us-east-1.amazonaws.com/M/meio/optimize";
+
+
+  const RECORD_FIELDS = [
+    "SKU_ID",
+    "Node_ID",
+    "Calendar_Week",
+    "Demand_Qty",
+    "Demand_Mean",
+    "Demand_Variance",
+    "LeadTime_Days",
+    "LeadTime_StdDev",
+    "OnHand_Qty",
+    "OnOrder_Qty",
+    "InTransit_Qty",
+    "UnitCost",
+    "Criticality_Class",
+    "Capacity_Units",
+    "ServiceLevel_Target",
+    "Repairable_Flag",
+    "Substitution_Group_ID",
+    "RiskRegion",
+    "HoldingCost_PerUnit",
+    "ShortagePenalty_PerUnit",
+    "Prior_SafetyStock",
+    "Prior_ReorderPoint",
+    "Prior_PolicyVersionID"
+  ];
+
+  const REQUIRED_RECORD_FIELDS = [
+    "SKU_ID",
+    "Node_ID",
+    "Calendar_Week",
+    "Demand_Qty",
+    "Demand_Mean",
+    "Demand_Variance",
+    "LeadTime_Days",
+    "LeadTime_StdDev",
+    "OnHand_Qty",
+    "OnOrder_Qty",
+    "InTransit_Qty",
+    "UnitCost",
+    "Criticality_Class",
+    "Capacity_Units",
+    "ServiceLevel_Target",
+    "Repairable_Flag",
+    "Substitution_Group_ID",
+    "RiskRegion",
+    "HoldingCost_PerUnit",
+    "ShortagePenalty_PerUnit"
+  ];
+
+  const NUMERIC_RECORD_FIELDS = new Set([
+    "Demand_Qty",
+    "Demand_Mean",
+    "Demand_Variance",
+    "LeadTime_Days",
+    "LeadTime_StdDev",
+    "OnHand_Qty",
+    "OnOrder_Qty",
+    "InTransit_Qty",
+    "UnitCost",
+    "Capacity_Units",
+    "ServiceLevel_Target",
+    "HoldingCost_PerUnit",
+    "ShortagePenalty_PerUnit",
+    "Prior_SafetyStock",
+    "Prior_ReorderPoint"
+  ]);
+
+
+  const fileInput =
+    document.getElementById("fileInput");
+
+  const jsonInput =
+    document.getElementById("jsonInput");
+
+  const runButton =
+    document.getElementById("runButton");
+
+  const downloadTemplateButton =
+    document.getElementById("downloadTemplateButton");
+
+  const infoBox =
+    document.getElementById("infoBox");
+
+  const errorBox =
+    document.getElementById("errorBox");
+
+  const successBox =
+    document.getElementById("successBox");
+
+  const resultCard =
+    document.getElementById("resultCard");
+
+  const resultBody =
+    document.getElementById("resultBody");
+
+  const rawCard =
+    document.getElementById("rawCard");
+
+  const rawOutput =
+    document.getElementById("rawOutput");
+
+
+  function clearMessages() {
+
+    infoBox.classList.add("hidden");
+
+    errorBox.classList.add("hidden");
+
+    successBox.classList.add("hidden");
+
+    resultCard.classList.add("hidden");
+
+    rawCard.classList.add("hidden");
+
+    resultBody.innerHTML = "";
+
+    rawOutput.textContent = "";
+
+  }
+
+
+  function showInfo(message) {
+
+    infoBox.textContent = message;
+
+    infoBox.classList.remove("hidden");
+
+  }
+
+
+  function showError(message) {
+
+    errorBox.textContent = message;
+
+    errorBox.classList.remove("hidden");
+
+  }
+
+
+  function displayValue(value) {
+
+    if (
+      value === null ||
+      value === undefined
+    ) {
+      return "";
+    }
+
+    if (typeof value === "number") {
+
+      return Number(
+        value.toFixed(4)
+      );
+
+    }
+
+    return value;
+
+  }
+
+
+  function addCell(row, value) {
+
+    const cell =
+      document.createElement("td");
+
+    cell.textContent =
+      displayValue(value);
+
+    row.appendChild(cell);
+
+  }
+
+
+  function normalizeHeader(value) {
+
+    return String(value ?? "")
+      .trim()
+      .replace(/\s+/g, "_");
+
+  }
+
+
+  function isBlank(value) {
+
+    return (
+      value === null ||
+      value === undefined ||
+      String(value).trim() === ""
+    );
+
+  }
+
+
+  function toNumber(value, fieldName, rowNumber) {
+
+    if (isBlank(value)) {
+      return null;
+    }
+
+    const parsed = Number(value);
+
+    if (!Number.isFinite(parsed)) {
+      throw new Error(
+        `Records row ${rowNumber}: ${fieldName} must be numeric.`
+      );
+    }
+
+    return parsed;
+
+  }
+
+
+  function toBoolean(value, fieldName, rowNumber) {
+
+    if (typeof value === "boolean") {
+      return value;
+    }
+
+    if (typeof value === "number") {
+
+      if (value === 1) {
+        return true;
+      }
+
+      if (value === 0) {
+        return false;
+      }
+
+    }
+
+    const normalized =
+      String(value ?? "")
+        .trim()
+        .toLowerCase();
+
+    if (
+      ["true", "yes", "y", "1"].includes(normalized)
+    ) {
+      return true;
+    }
+
+    if (
+      ["false", "no", "n", "0"].includes(normalized)
+    ) {
+      return false;
+    }
+
+    throw new Error(
+      `Records row ${rowNumber}: ${fieldName} must be TRUE/FALSE, YES/NO, Y/N, or 1/0.`
+    );
+
+  }
+
+
+  function rowsFromSheet(workbook, sheetName) {
+
+    const actualName =
+      workbook.SheetNames.find(
+        name =>
+          name.trim().toLowerCase() ===
+          sheetName.toLowerCase()
+      );
+
+    if (!actualName) {
+      throw new Error(
+        `Excel workbook is missing required sheet "${sheetName}".`
+      );
+    }
+
+    return XLSX.utils.sheet_to_json(
+      workbook.Sheets[actualName],
+      {
+        defval: null,
+        raw: true
+      }
+    );
+
+  }
+
+
+  function normalizeObjectKeys(row) {
+
+    const result = {};
+
+    Object.entries(row).forEach(
+      ([key, value]) => {
+
+        result[
+          normalizeHeader(key)
+        ] = value;
+
+      }
+    );
+
+    return result;
+
+  }
+
+
+  function buildRecords(recordsRows) {
+
+    if (!recordsRows.length) {
+      throw new Error(
+        'The "Records" sheet must contain at least one data row.'
+      );
+    }
+
+    return recordsRows.map(
+      (rawRow, index) => {
+
+        const row =
+          normalizeObjectKeys(rawRow);
+
+        const excelRowNumber =
+          index + 2;
+
+        const missing =
+          REQUIRED_RECORD_FIELDS.filter(
+            field =>
+              !(field in row) ||
+              isBlank(row[field])
+          );
+
+        if (missing.length) {
+
+          throw new Error(
+            `Records row ${excelRowNumber} is missing required values: ${missing.join(", ")}`
+          );
+
+        }
+
+        const record = {};
+
+        RECORD_FIELDS.forEach(
+          field => {
+
+            if (!(field in row)) {
+              return;
+            }
+
+            const rawValue =
+              row[field];
+
+            if (isBlank(rawValue)) {
+
+              if (
+                [
+                  "Prior_SafetyStock",
+                  "Prior_ReorderPoint",
+                  "Prior_PolicyVersionID"
+                ].includes(field)
+              ) {
+                return;
+              }
+
+              record[field] = rawValue;
+              return;
+            }
+
+            if (field === "Repairable_Flag") {
+
+              record[field] =
+                toBoolean(
+                  rawValue,
+                  field,
+                  excelRowNumber
+                );
+
+              return;
+
+            }
+
+            if (
+              NUMERIC_RECORD_FIELDS.has(field)
+            ) {
+
+              record[field] =
+                toNumber(
+                  rawValue,
+                  field,
+                  excelRowNumber
+                );
+
+              return;
+
+            }
+
+            record[field] =
+              String(rawValue).trim();
+
+          }
+        );
+
+        return record;
+
+      }
+    );
+
+  }
+
+
+  function buildTopology(topologyRows, records) {
+
+    const topology = {};
+
+    topologyRows.forEach(
+      (rawRow, index) => {
+
+        const row =
+          normalizeObjectKeys(rawRow);
+
+        const parent =
+          row.Parent_Node;
+
+        const child =
+          row.Child_Node;
+
+        if (isBlank(parent)) {
+
+          if (isBlank(child)) {
+            return;
+          }
+
+          throw new Error(
+            `Topology row ${index + 2}: Parent_Node is required when Child_Node is supplied.`
+          );
+
+        }
+
+        const parentText =
+          String(parent).trim();
+
+        if (!(parentText in topology)) {
+          topology[parentText] = [];
+        }
+
+        if (!isBlank(child)) {
+
+          const childText =
+            String(child).trim();
+
+          if (
+            !topology[parentText]
+              .includes(childText)
+          ) {
+            topology[parentText].push(
+              childText
+            );
+          }
+
+          if (!(childText in topology)) {
+            topology[childText] = [];
+          }
+
+        }
+
+      }
+    );
+
+    /*
+      Ensure all nodes in the Records sheet appear in topology.
+      Leaf nodes are represented by empty arrays.
+    */
+    records.forEach(
+      record => {
+
+        const node =
+          record.Node_ID;
+
+        if (!(node in topology)) {
+          topology[node] = [];
+        }
+
+      }
+    );
+
+    return topology;
+
+  }
+
+
+  function buildSkuConfig(skuRows) {
+
+    if (!skuRows.length) {
+      throw new Error(
+        'The "SKU_Config" sheet must contain at least one data row.'
+      );
+    }
+
+    const supply = {};
+
+    const budget = {};
+
+    skuRows.forEach(
+      (rawRow, index) => {
+
+        const row =
+          normalizeObjectKeys(rawRow);
+
+        const rowNumber =
+          index + 2;
+
+        if (isBlank(row.SKU_ID)) {
+
+          throw new Error(
+            `SKU_Config row ${rowNumber}: SKU_ID is required.`
+          );
+
+        }
+
+        const sku =
+          String(row.SKU_ID).trim();
+
+        if (
+          isBlank(
+            row.Available_Upstream_Supply
+          )
+        ) {
+
+          throw new Error(
+            `SKU_Config row ${rowNumber}: Available_Upstream_Supply is required.`
+          );
+
+        }
+
+        const supplyValue =
+          Number(
+            row.Available_Upstream_Supply
+          );
+
+        if (
+          !Number.isFinite(supplyValue) ||
+          supplyValue < 0
+        ) {
+
+          throw new Error(
+            `SKU_Config row ${rowNumber}: Available_Upstream_Supply must be a non-negative number.`
+          );
+
+        }
+
+        supply[sku] =
+          supplyValue;
+
+        if (
+          isBlank(
+            row.Regional_Budget
+          )
+        ) {
+
+          budget[sku] =
+            null;
+
+        } else {
+
+          const budgetValue =
+            Number(
+              row.Regional_Budget
+            );
+
+          if (
+            !Number.isFinite(budgetValue) ||
+            budgetValue < 0
+          ) {
+
+            throw new Error(
+              `SKU_Config row ${rowNumber}: Regional_Budget must be blank or a non-negative number.`
+            );
+
+          }
+
+          budget[sku] =
+            budgetValue;
+
+        }
+
+      }
+    );
+
+    return {
+      supply,
+      budget
+    };
+
+  }
+
+
+  function buildRunConfig(runRows) {
+
+    const config = {};
+
+    runRows.forEach(
+      rawRow => {
+
+        const row =
+          normalizeObjectKeys(rawRow);
+
+        if (isBlank(row.Key)) {
+          return;
+        }
+
+        config[
+          String(row.Key).trim()
+        ] = row.Value;
+
+      }
+    );
+
+    const requiredKeys = [
+      "trigger_type",
+      "data_version_ref",
+      "max_change_pct",
+      "normal_approver_role",
+      "exception_approver_role"
+    ];
+
+    const missing =
+      requiredKeys.filter(
+        key =>
+          !(key in config) ||
+          isBlank(config[key])
+      );
+
+    if (missing.length) {
+
+      throw new Error(
+        `Run_Config is missing required values: ${missing.join(", ")}`
+      );
+
+    }
+
+    const maxChange =
+      Number(
+        config.max_change_pct
+      );
+
+    if (
+      !Number.isFinite(maxChange) ||
+      maxChange < 0
+    ) {
+
+      throw new Error(
+        "Run_Config max_change_pct must be a non-negative number."
+      );
+
+    }
+
+    return {
+      trigger_type:
+        String(
+          config.trigger_type
+        ).trim(),
+
+      data_version_ref:
+        String(
+          config.data_version_ref
+        ).trim(),
+
+      max_change_pct:
+        maxChange,
+
+      normal_approver_role:
+        String(
+          config.normal_approver_role
+        ).trim(),
+
+      exception_approver_role:
+        String(
+          config.exception_approver_role
+        ).trim(),
+
+      expiration_date:
+        isBlank(
+          config.expiration_date
+        )
+          ? null
+          : String(
+              config.expiration_date
+            ).trim()
+    };
+
+  }
+
+
+  function workbookToMeioPayload(workbook) {
+
+    const recordsRows =
+      rowsFromSheet(
+        workbook,
+        "Records"
+      );
+
+    const topologyRows =
+      rowsFromSheet(
+        workbook,
+        "Topology"
+      );
+
+    const skuRows =
+      rowsFromSheet(
+        workbook,
+        "SKU_Config"
+      );
+
+    const runRows =
+      rowsFromSheet(
+        workbook,
+        "Run_Config"
+      );
+
+    const records =
+      buildRecords(
+        recordsRows
+      );
+
+    const topology =
+      buildTopology(
+        topologyRows,
+        records
+      );
+
+    const skuConfig =
+      buildSkuConfig(
+        skuRows
+      );
+
+    const runConfig =
+      buildRunConfig(
+        runRows
+      );
+
+    /*
+      Make sure every SKU in Records has supply/budget entries.
+    */
+    const recordSkus =
+      [
+        ...new Set(
+          records.map(
+            record =>
+              record.SKU_ID
+          )
+        )
+      ];
+
+    recordSkus.forEach(
+      sku => {
+
+        if (
+          !(
+            sku in
+            skuConfig.supply
+          )
+        ) {
+
+          throw new Error(
+            `SKU_Config is missing Available_Upstream_Supply for SKU ${sku}.`
+          );
+
+        }
+
+        if (
+          !(
+            sku in
+            skuConfig.budget
+          )
+        ) {
+
+          throw new Error(
+            `SKU_Config is missing Regional_Budget entry for SKU ${sku}. Use a blank cell if no budget constraint is required.`
+          );
+
+        }
+
+      }
+    );
+
+    return {
+
+      records:
+        records,
+
+      topology:
+        topology,
+
+      available_upstream_supply_by_sku:
+        skuConfig.supply,
+
+      regional_budget_by_sku:
+        skuConfig.budget,
+
+      trigger_type:
+        runConfig.trigger_type,
+
+      data_version_ref:
+        runConfig.data_version_ref,
+
+      max_change_pct:
+        runConfig.max_change_pct,
+
+      normal_approver_role:
+        runConfig.normal_approver_role,
+
+      exception_approver_role:
+        runConfig.exception_approver_role,
+
+      expiration_date:
+        runConfig.expiration_date
+
+    };
+
+  }
+
+
+  function handleExcelFile(file) {
+
+    if (
+      typeof XLSX === "undefined"
+    ) {
+
+      clearMessages();
+
+      showError(
+        "Excel parser could not be loaded. Check internet access to the SheetJS script or package xlsx.full.min.js with the Amplify site."
+      );
+
+      return;
+
+    }
+
+    const reader =
+      new FileReader();
+
+    reader.onload =
+      function(e) {
+
+        try {
+
+          const workbook =
+            XLSX.read(
+              e.target.result,
+              {
+                type: "array",
+                cellDates: false
+              }
+            );
+
+          const payload =
+            workbookToMeioPayload(
+              workbook
+            );
+
+          jsonInput.value =
+            JSON.stringify(
+              payload,
+              null,
+              2
+            );
+
+          clearMessages();
+
+          showInfo(
+            `Excel workbook "${file.name}" loaded successfully.\n` +
+            `Records: ${payload.records.length}\n` +
+            `SKUs: ${Object.keys(payload.available_upstream_supply_by_sku).length}\n` +
+            `Nodes: ${Object.keys(payload.topology).length}\n\n` +
+            "Input is ready. Click Run MEIO Optimization to execute the model."
+          );
+
+        } catch (error) {
+
+          clearMessages();
+
+          showError(
+            "Could not prepare the Excel workbook for MEIO execution.\n\n"
+            + error.message
+          );
+
+        }
+
+      };
+
+    reader.onerror =
+      function() {
+
+        clearMessages();
+
+        showError(
+          "Could not read Excel workbook."
+        );
+
+      };
+
+    reader.readAsArrayBuffer(
+      file
+    );
+
+  }
+
+
+  fileInput.addEventListener(
+    "change",
+    function(event) {
+
+      const file =
+        event.target.files[0];
+
+      if (!file) {
+        return;
+      }
+
+      const fileName =
+        file.name.toLowerCase();
+
+      if (
+        fileName.endsWith(".xlsx") ||
+        fileName.endsWith(".xls")
+      ) {
+
+        handleExcelFile(
+          file
+        );
+
+        return;
+
+      }
+
+      clearMessages();
+
+      showError(
+        "Unsupported file type. Please upload .xlsx or .xls."
+      );
+
+    }
+  );
+
+
+  /*
+    Creates a blank workbook whose schema directly maps to
+    the Lambda MEIO request contract. No business/scenario values
+    are embedded in this HTML.
+  */
+  downloadTemplateButton.addEventListener(
+    "click",
+    function() {
+
+      if (
+        typeof XLSX === "undefined"
+      ) {
+
+        showError(
+          "Excel library is not available."
+        );
+
+        return;
+
+      }
+
+      const workbook =
+        XLSX.utils.book_new();
+
+
+      const recordsSheet =
+        XLSX.utils.aoa_to_sheet(
+          [
+            RECORD_FIELDS
+          ]
+        );
+
+      XLSX.utils.book_append_sheet(
+        workbook,
+        recordsSheet,
+        "Records"
+      );
+
+
+      const topologySheet =
+        XLSX.utils.aoa_to_sheet(
+          [
+            [
+              "Parent_Node",
+              "Child_Node"
+            ]
+          ]
+        );
+
+      XLSX.utils.book_append_sheet(
+        workbook,
+        topologySheet,
+        "Topology"
+      );
+
+
+      const skuConfigSheet =
+        XLSX.utils.aoa_to_sheet(
+          [
+            [
+              "SKU_ID",
+              "Available_Upstream_Supply",
+              "Regional_Budget"
+            ]
+          ]
+        );
+
+      XLSX.utils.book_append_sheet(
+        workbook,
+        skuConfigSheet,
+        "SKU_Config"
+      );
+
+
+      const runConfigSheet =
+        XLSX.utils.aoa_to_sheet(
+          [
+            [
+              "Key",
+              "Value"
+            ],
+            [
+              "trigger_type",
+              ""
+            ],
+            [
+              "data_version_ref",
+              ""
+            ],
+            [
+              "max_change_pct",
+              ""
+            ],
+            [
+              "normal_approver_role",
+              ""
+            ],
+            [
+              "exception_approver_role",
+              ""
+            ],
+            [
+              "expiration_date",
+              ""
+            ]
+          ]
+        );
+
+      XLSX.utils.book_append_sheet(
+        workbook,
+        runConfigSheet,
+        "Run_Config"
+      );
+
+
+      XLSX.writeFile(
+        workbook,
+        "MEIO_Input_Template.xlsx"
+      );
+
+    }
+  );
+
+
+  runButton.addEventListener(
+    "click",
+    async function() {
+
+      clearMessages();
+
+
+      const inputText =
+        jsonInput.value.trim();
+
+
+      if (!inputText) {
+
+        showError(
+          "Please upload a MEIO Excel workbook before running the optimization."
+        );
+
+        return;
+
+      }
+
+
+      let payload;
+
+
+      try {
+
+        payload =
+          JSON.parse(
+            inputText
+          );
+
+      } catch (error) {
+
+        showError(
+          "Invalid JSON:\n\n"
+          + error.message
+        );
+
+        return;
+
+      }
+
+
+      runButton.disabled = true;
+
+      runButton.textContent =
+        "Running MEIO Optimization...";
+
+
+      try {
+
+        console.log(
+          "Calling MEIO API:",
+          API_URL
+        );
+
+
+        const apiResponse =
+          await fetch(
+            API_URL,
+            {
+              method: "POST",
+
+              mode: "cors",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify(
+                  payload
+                )
+            }
+          );
+
+
+        console.log(
+          "HTTP Status:",
+          apiResponse.status
+        );
+
+
+        const responseText =
+          await apiResponse.text();
+
+
+        console.log(
+          "Raw API Response:",
+          responseText
+        );
+
+
+        let data;
+
+
+        try {
+
+          data =
+            JSON.parse(
+              responseText
+            );
+
+        } catch (error) {
+
+          throw new Error(
+            "API responded, but response was not JSON.\n\n"
+            + responseText
+          );
+
+        }
+
+
+        /*
+          Supports API Gateway/Lambda proxy wrappers if returned.
+        */
+        if (
+          data &&
+          typeof data.body === "string"
+        ) {
+
+          try {
+
+            data =
+              JSON.parse(
+                data.body
+              );
+
+          } catch (error) {
+
+            console.log(
+              "Lambda body was not nested JSON."
+            );
+
+          }
+
+        }
+
+
+        if (!apiResponse.ok) {
+
+          throw new Error(
+
+            "API returned HTTP "
+            + apiResponse.status
+            + "\n\n"
+            + JSON.stringify(
+                data,
+                null,
+                2
+              )
+
+          );
+
+        }
+
+
+        if (data.error) {
+
+          throw new Error(
+            data.error
+          );
+
+        }
+
+
+        successBox.classList.remove(
+          "hidden"
+        );
+
+
+        if (
+          Array.isArray(
+            data.policies
+          )
+        ) {
+
+          data.policies.forEach(
+            function(policy) {
+
+              const row =
+                document.createElement(
+                  "tr"
+                );
+
+
+              addCell(
+                row,
+                policy.SKU_ID
+              );
+
+              addCell(
+                row,
+                policy.Node_ID
+              );
+
+              addCell(
+                row,
+                policy.LocalInventoryPosition
+              );
+
+              addCell(
+                row,
+                policy.EchelonInventory
+              );
+
+              addCell(
+                row,
+                policy.SafetyStock_Target
+              );
+
+              addCell(
+                row,
+                policy.ReorderPoint
+              );
+
+              addCell(
+                row,
+                policy.RecommendedAllocation
+              );
+
+              addCell(
+                row,
+                policy.RemainingShortage
+              );
+
+              addCell(
+                row,
+                policy.ServiceLevel_Assigned
+              );
+
+              addCell(
+                row,
+                policy.GuardrailStatus
+              );
+
+
+              resultBody.appendChild(
+                row
+              );
+
+            }
+          );
+
+
+          resultCard.classList.remove(
+            "hidden"
+          );
+
+        }
+
+
+        rawOutput.textContent =
+          JSON.stringify(
+            data,
+            null,
+            2
+          );
+
+
+        rawCard.classList.remove(
+          "hidden"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "MEIO API ERROR:",
+          error
+        );
+
+
+        if (
+          error instanceof TypeError &&
+          error.message.includes(
+            "Failed to fetch"
+          )
+        ) {
+
+          showError(
+            "Browser could not reach the MEIO API.\n\n"
+            +
+            "The HTML is using:\n"
+            +
+            API_URL
+            +
+            "\n\n"
+            +
+            "This normally means API Gateway CORS, deployment, or endpoint connectivity must be checked."
+          );
+
+        } else {
+
+          showError(
+            error.message ||
+            "MEIO optimization failed."
+          );
+
+        }
+
+
+      } finally {
+
+        runButton.disabled = false;
+
+        runButton.textContent =
+          "Run MEIO Optimization";
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>

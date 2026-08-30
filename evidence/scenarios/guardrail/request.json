@@ -1,0 +1,99 @@
+{
+  "records": [
+    {
+      "SKU_ID": "TEL-SKU-001",
+      "Node_ID": "NATIONAL_HUB",
+      "Calendar_Week": "2026-W34",
+      "Demand_Qty": 55,
+      "Demand_Mean": 8,
+      "Demand_Variance": 16,
+      "LeadTime_Days": 7,
+      "LeadTime_StdDev": 1.5,
+      "OnHand_Qty": 20,
+      "OnOrder_Qty": 10,
+      "InTransit_Qty": 5,
+      "UnitCost": 100,
+      "Criticality_Class": "AX",
+      "Capacity_Units": 200,
+      "ServiceLevel_Target": 0.95,
+      "Repairable_Flag": false,
+      "Substitution_Group_ID": "TEL-GROUP-01",
+      "RiskRegion": "NATIONAL",
+      "HoldingCost_PerUnit": 2,
+      "ShortagePenalty_PerUnit": 50,
+      "Prior_SafetyStock": 17.4075,
+      "Prior_ReorderPoint": 73.4075,
+      "Prior_PolicyVersionID": "MEIO-20260823T010822006345Z-72e78644e9b24f17a212ffb9c38a5ab7"
+    },
+    {
+      "SKU_ID": "TEL-SKU-001",
+      "Node_ID": "DENVER_HUB",
+      "Calendar_Week": "2026-W34",
+      "Demand_Qty": 35,
+      "Demand_Mean": 6,
+      "Demand_Variance": 25,
+      "LeadTime_Days": 5,
+      "LeadTime_StdDev": 1.2,
+      "OnHand_Qty": 10,
+      "OnOrder_Qty": 3,
+      "InTransit_Qty": 2,
+      "UnitCost": 120,
+      "Criticality_Class": "AY",
+      "Capacity_Units": 100,
+      "ServiceLevel_Target": 0.98,
+      "Repairable_Flag": false,
+      "Substitution_Group_ID": "TEL-GROUP-01",
+      "RiskRegion": "WEST",
+      "HoldingCost_PerUnit": 2.5,
+      "ShortagePenalty_PerUnit": 80,
+      "Prior_SafetyStock": 22.9616,
+      "Prior_ReorderPoint": 47.9616,
+      "Prior_PolicyVersionID": "MEIO-20260823T010822006345Z-72e78644e9b24f17a212ffb9c38a5ab7"
+    },
+    {
+      "SKU_ID": "TEL-SKU-001",
+      "Node_ID": "DALLAS_HUB",
+      "Calendar_Week": "2026-W34",
+      "Demand_Qty": 30,
+      "Demand_Mean": 4,
+      "Demand_Variance": 9,
+      "LeadTime_Days": 5,
+      "LeadTime_StdDev": 1,
+      "OnHand_Qty": 7,
+      "OnOrder_Qty": 2,
+      "InTransit_Qty": 1,
+      "UnitCost": 110,
+      "Criticality_Class": "BZ",
+      "Capacity_Units": 100,
+      "ServiceLevel_Target": 0.97,
+      "Repairable_Flag": true,
+      "Substitution_Group_ID": "TEL-GROUP-01",
+      "RiskRegion": "SOUTH",
+      "HoldingCost_PerUnit": 2,
+      "ShortagePenalty_PerUnit": 65,
+      "Prior_SafetyStock": 12.6167,
+      "Prior_ReorderPoint": 32.6167,
+      "Prior_PolicyVersionID": "MEIO-20260823T010822006345Z-72e78644e9b24f17a212ffb9c38a5ab7"
+    }
+  ],
+  "topology": {
+    "NATIONAL_HUB": [
+      "DENVER_HUB",
+      "DALLAS_HUB"
+    ],
+    "DENVER_HUB": [],
+    "DALLAS_HUB": []
+  },
+  "available_upstream_supply_by_sku": {
+    "TEL-SKU-001": 40
+  },
+  "regional_budget_by_sku": {
+    "TEL-SKU-001": 4500
+  },
+  "trigger_type": "CONTROLLED_TEST_RUN",
+  "data_version_ref": "SYNTHETIC-DEMO-2026-W34-GUARDRAIL",
+  "max_change_pct": 0.0,
+  "normal_approver_role": "INVENTORY_PLANNER",
+  "exception_approver_role": "SUPPLY_CHAIN_MANAGER",
+  "expiration_date": null
+}

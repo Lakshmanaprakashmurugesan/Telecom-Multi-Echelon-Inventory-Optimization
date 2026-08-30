@@ -1,0 +1,3 @@
+Python: 3.13.5
+Platform: Linux-6.18.35-x86_64-with-glibc2.41
+Validation: automated backend test suite + controlled scenario replay
