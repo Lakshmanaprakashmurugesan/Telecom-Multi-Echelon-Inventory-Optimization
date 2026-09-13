@@ -89,7 +89,7 @@ Each scenario changes a defined input or supplies an optional configuration rath
 
 Open the existing AWS Amplify application:
 
-**https://staging.d387jy9rxdyq28.amplifyapp.com/**
+**https://staging.d1jrsof4a5v813.amplifyapp.com/**
 
 Upload `MEIO_Input_Test.xlsx`, confirm the workbook is accepted, then select **Run MEIO Optimization**. The generated request is kept internal by the browser UI. No local web server is required for the normal browser workflow.
 

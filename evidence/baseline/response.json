@@ -21,7 +21,7 @@
   },
   "summaries": [
     {
-      "PolicyVersionID": "MEIO-20260823T022150254304Z-4ba6b81cec7540a8a14f6db6bf4fc1ec",
+      "PolicyVersionID": "MEIO-20260911T020124760729Z-7bb117397f7b42bab66ed013471fd674",
       "SKU_ID": "TEL-SKU-001",
       "node_count": 3,
       "optimizer": {
@@ -37,9 +37,9 @@
         "edge_flow_constraints_applied": [],
         "criticality_priority_weights": {
           "CZ": 1.0,
-          "AX": 1.0,
           "BZ": 1.0,
-          "AY": 1.0
+          "AY": 1.0,
+          "AX": 1.0
         }
       },
       "surge_configuration_applied": {
@@ -66,7 +66,7 @@
     {
       "SKU_ID": "TEL-SKU-001",
       "Node_ID": "NATIONAL_HUB",
-      "PolicyVersionID": "MEIO-20260823T022150254304Z-4ba6b81cec7540a8a14f6db6bf4fc1ec",
+      "PolicyVersionID": "MEIO-20260911T020124760729Z-7bb117397f7b42bab66ed013471fd674",
       "EchelonInventory": 60.0,
       "LocalInventoryPosition": 35.0,
       "RepairReturnCredit": 0.0,
@@ -88,14 +88,14 @@
       "TriggerType": "CONTROLLED_TEST_RUN",
       "ApproverRole": "INVENTORY_PLANNER",
       "GuardrailStatus": "NO_PRIOR_POLICY",
-      "EffectiveDate": "2026-08-23",
+      "EffectiveDate": "2026-09-11",
       "ExpirationDate": null,
       "RollbackRef": null
     },
     {
       "SKU_ID": "TEL-SKU-001",
       "Node_ID": "DENVER_HUB",
-      "PolicyVersionID": "MEIO-20260823T022150254304Z-4ba6b81cec7540a8a14f6db6bf4fc1ec",
+      "PolicyVersionID": "MEIO-20260911T020124760729Z-7bb117397f7b42bab66ed013471fd674",
       "EchelonInventory": 15.0,
       "LocalInventoryPosition": 15.0,
       "RepairReturnCredit": 0.0,
@@ -117,14 +117,14 @@
       "TriggerType": "CONTROLLED_TEST_RUN",
       "ApproverRole": "INVENTORY_PLANNER",
       "GuardrailStatus": "NO_PRIOR_POLICY",
-      "EffectiveDate": "2026-08-23",
+      "EffectiveDate": "2026-09-11",
       "ExpirationDate": null,
       "RollbackRef": null
     },
     {
       "SKU_ID": "TEL-SKU-001",
       "Node_ID": "DALLAS_HUB",
-      "PolicyVersionID": "MEIO-20260823T022150254304Z-4ba6b81cec7540a8a14f6db6bf4fc1ec",
+      "PolicyVersionID": "MEIO-20260911T020124760729Z-7bb117397f7b42bab66ed013471fd674",
       "EchelonInventory": 10.0,
       "LocalInventoryPosition": 10.0,
       "RepairReturnCredit": 0.0,
@@ -146,14 +146,14 @@
       "TriggerType": "CONTROLLED_TEST_RUN",
       "ApproverRole": "INVENTORY_PLANNER",
       "GuardrailStatus": "NO_PRIOR_POLICY",
-      "EffectiveDate": "2026-08-23",
+      "EffectiveDate": "2026-09-11",
       "ExpirationDate": null,
       "RollbackRef": null
     }
   ],
   "audit": [
     {
-      "PolicyVersionID": "MEIO-20260823T022150254304Z-4ba6b81cec7540a8a14f6db6bf4fc1ec",
+      "PolicyVersionID": "MEIO-20260911T020124760729Z-7bb117397f7b42bab66ed013471fd674",
       "SKU_ID": "TEL-SKU-001",
       "Node_ID": "NATIONAL_HUB",
       "Prior_SS": null,
@@ -163,13 +163,13 @@
       "TriggerType": "CONTROLLED_TEST_RUN",
       "DataVersionRef": "SYNTHETIC-DEMO-2026-W34",
       "ApproverRole": "INVENTORY_PLANNER",
-      "ApprovalTimestamp": "2026-08-23T02:21:50.254304+00:00",
-      "EffectiveDate": "2026-08-23",
+      "ApprovalTimestamp": "2026-09-11T02:01:24.760729+00:00",
+      "EffectiveDate": "2026-09-11",
       "RollbackRef": null,
       "GuardrailStatus": "NO_PRIOR_POLICY"
     },
     {
-      "PolicyVersionID": "MEIO-20260823T022150254304Z-4ba6b81cec7540a8a14f6db6bf4fc1ec",
+      "PolicyVersionID": "MEIO-20260911T020124760729Z-7bb117397f7b42bab66ed013471fd674",
       "SKU_ID": "TEL-SKU-001",
       "Node_ID": "DENVER_HUB",
       "Prior_SS": null,
@@ -179,13 +179,13 @@
       "TriggerType": "CONTROLLED_TEST_RUN",
       "DataVersionRef": "SYNTHETIC-DEMO-2026-W34",
       "ApproverRole": "INVENTORY_PLANNER",
-      "ApprovalTimestamp": "2026-08-23T02:21:50.254304+00:00",
-      "EffectiveDate": "2026-08-23",
+      "ApprovalTimestamp": "2026-09-11T02:01:24.760729+00:00",
+      "EffectiveDate": "2026-09-11",
       "RollbackRef": null,
       "GuardrailStatus": "NO_PRIOR_POLICY"
     },
     {
-      "PolicyVersionID": "MEIO-20260823T022150254304Z-4ba6b81cec7540a8a14f6db6bf4fc1ec",
+      "PolicyVersionID": "MEIO-20260911T020124760729Z-7bb117397f7b42bab66ed013471fd674",
       "SKU_ID": "TEL-SKU-001",
       "Node_ID": "DALLAS_HUB",
       "Prior_SS": null,
@@ -195,8 +195,8 @@
       "TriggerType": "CONTROLLED_TEST_RUN",
       "DataVersionRef": "SYNTHETIC-DEMO-2026-W34",
       "ApproverRole": "INVENTORY_PLANNER",
-      "ApprovalTimestamp": "2026-08-23T02:21:50.254304+00:00",
-      "EffectiveDate": "2026-08-23",
+      "ApprovalTimestamp": "2026-09-11T02:01:24.760729+00:00",
+      "EffectiveDate": "2026-09-11",
       "RollbackRef": null,
       "GuardrailStatus": "NO_PRIOR_POLICY"
     }
@@ -210,5 +210,5 @@
     "enabled": false,
     "reason": "No historical_replay observations supplied."
   },
-  "evidence_boundary": "Controlled reference implementation. Optional risk, repair, substitution, flow, and surge behavior uses caller-supplied assumptions because technical specification does not define their numerical calibration."
+  "evidence_boundary": "Controlled reference implementation. Optional risk, repair, substitution, flow, and surge behavior uses caller-supplied assumptions rather than hard-coded numerical calibration."
 }

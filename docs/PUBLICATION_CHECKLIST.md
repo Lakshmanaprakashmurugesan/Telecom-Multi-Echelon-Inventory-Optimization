@@ -11,7 +11,7 @@ Use truthful, current dates. Do not backdate repository history or evidence.
 - [ ] Confirm no secrets, credentials, private customer data, or proprietary operational data are present.
 - [ ] Confirm the API Gateway URL in `index.html` is intentionally public.
 - [ ] Confirm the Amplify app is connected to the intended Git branch.
-- [ ] Confirm API Gateway CORS allows `https://staging.d387jy9rxdyq28.amplifyapp.com`.
+- [ ] Confirm API Gateway CORS allows `https://staging.d1jrsof4a5v813.amplifyapp.com/`.
 - [ ] Decide whether to add an open-source license; no license is assumed here.
 
 ## Recommended initial commit sequence
@@ -34,4 +34,4 @@ Publish telecom MEIO reference implementation and reproducibility materials
 - tag the independently reviewed snapshot if appropriate;
 - record the Git commit SHA used by any reviewer;
 - capture the Amplify deployment/commit identifier and remote Lambda/API metadata when a reviewer needs source-to-deployment binding.
-- verify the hosted application at `https://staging.d387jy9rxdyq28.amplifyapp.com/` after each published UI revision.
+- verify the hosted application at `https://staging.d1jrsof4a5v813.amplifyapp.com/` after each published UI revision.

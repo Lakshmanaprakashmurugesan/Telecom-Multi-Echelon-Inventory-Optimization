@@ -50,7 +50,7 @@ The supplied frontend before this final Excel-only UI adjustment had:
 
 ```text
 Supplied index (4).html
-SHA-256: 293ac619945ec13499c7c02f18808fc4e59f0d4dc3fe68c99a36a9067854610f
+SHA-256: 487537a9f52f540d8e2d32f64cf7c2c2100db116cf60a2394e73ffd6a98822bf
 ```
 
 Frontend changes are limited to presentation and user-input workflow:

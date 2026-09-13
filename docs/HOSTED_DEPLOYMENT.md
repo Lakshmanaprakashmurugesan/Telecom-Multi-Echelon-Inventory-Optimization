@@ -4,7 +4,7 @@
 
 The browser application is intended to be served from:
 
-**https://staging.d387jy9rxdyq28.amplifyapp.com/**
+**https://staging.d1jrsof4a5v813.amplifyapp.com/**
 
 The frontend in `index.html` is configured to call:
 
@@ -31,7 +31,7 @@ MEIO UI BUILD: 2026-08-23-final-excel-ui
 From PowerShell, verify the deployed HTML with:
 
 ```powershell
-curl.exe -s "https://staging.d387jy9rxdyq28.amplifyapp.com/?v=final" | Select-String "MEIO UI BUILD"
+curl.exe -s "https://staging.d1jrsof4a5v813.amplifyapp.com/?v=final" | Select-String "MEIO UI BUILD"
 ```
 
 ## Hosted workflow
