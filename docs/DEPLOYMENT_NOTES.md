@@ -68,7 +68,7 @@ The hosted `index.html` loads SheetJS/XLSX 0.18.5 from the CDN referenced in the
 
 ## Deployment evidence boundary
 
-Repository contents demonstrate source and reproducible local behavior. They do not by themselves prove that a particular remote AWS deployment is running the identical source revision. For strict source-to-deployment traceability, record:
+Repository contents demonstrate source and reproducible local behavior. For strict source-to-deployment traceability, record:
 
 - Amplify app and deployment identifier;
 - Lambda function/version/alias;
